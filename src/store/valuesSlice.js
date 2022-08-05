@@ -1,8 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-	value1: null,
-	value2: null,
+	values: {
+		value1: null,
+		value2: null,
+	},
+	fetchValues: false,
 };
 
 export const valuesSlice = createSlice({
@@ -10,13 +13,16 @@ export const valuesSlice = createSlice({
 	initialState,
 	reducers: {
 		setValue1(state, action) {
-			state.value1 = action.payload;
+			state.values.value1 = action.payload;
 		},
 		setValue2(state, action) {
-			state.value2 = action.payload;
+			state.values.value2 = action.payload;
+		},
+		setFetchValues(state, action) {
+			state.fetchValues = action.payload;
 		},
 	},
 });
 
-export const { setValue1, setValue2 } = valuesSlice.actions;
+export const { setValue1, setValue2, setFetchValues } = valuesSlice.actions;
 export default valuesSlice.reducer;

@@ -1,11 +1,12 @@
 import React, { useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { setValue1, setValue2 } from "../store/valuesSlice";
+import { setValue1, setValue2, setFetchValues } from "../store/valuesSlice";
 import { addToTableArray } from "../store/tableSlice";
 
 const Form = () => {
 	const dispatch = useDispatch();
-	const { value1, value2 } = useSelector((state) => state.values);
+	const { value1, value2 } = useSelector((state) => state.values.values);
+	const fetchValues = useSelector((state) => state.values.fetchValues);
 	const inputEl1 = useRef(null);
 	const inputEl2 = useRef(null);
 
@@ -23,12 +24,15 @@ const Form = () => {
 		dispatch(addToTableArray(tablePayload));
 		inputEl1.current.value = "";
 		inputEl2.current.value = "";
+		dispatch(setFetchValues(false));
 	};
 
 	useEffect(() => {
-		inputEl1.current.value = value1;
-		inputEl2.current.value = value2;
-	}, [value1, value2]);
+		if (fetchValues) {
+			inputEl1.current.value = value1;
+			inputEl2.current.value = value2;
+		}
+	}, [value1, value2, fetchValues]);
 
 	return (
 		<div>

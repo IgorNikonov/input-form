@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { setModalData, toggleIsOpen } from "../store/modalDataSlice";
-import { setValue1, setValue2 } from "../store/valuesSlice";
+import { setValue1, setValue2, setFetchValues } from "../store/valuesSlice";
 
 const Row = ({ value1, value2, idx }) => {
 	const dispatch = useDispatch();
@@ -15,6 +15,7 @@ const Row = ({ value1, value2, idx }) => {
 	const setFormValuesHandler = () => {
 		dispatch(setValue1(value1));
 		dispatch(setValue2(value2));
+		dispatch(setFetchValues(true));
 	};
 
 	return (

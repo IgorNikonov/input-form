@@ -1,25 +1,19 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import Form from "./components/Form";
+import Modal from "./components/Modal";
+import Table from "./components/Table";
+import { useSelector } from "react-redux";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	const { isOpen } = useSelector((state) => state.modalData);
+
+	return (
+		<div className='text-center'>
+			<Form />
+			<Table />
+			{isOpen && <Modal />}
+		</div>
+	);
 }
 
 export default App;

@@ -11,7 +11,7 @@ function App() {
 		<div className='text-center'>
 			<Form />
 			<Table />
-			{isOpen && <Modal />}
+			{/* {isOpen && <Modal />} */}
 		</div>
 	);
 }

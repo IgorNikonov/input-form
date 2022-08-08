@@ -4,10 +4,13 @@ import "./index.css";
 import App from "./App";
 import { store } from "./store";
 import { Provider } from "react-redux";
+import { PopupProvider } from "./popupcontext/PopupContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
 	<Provider store={store}>
-		<App />
+		<PopupProvider>
+			<App />
+		</PopupProvider>
 	</Provider>
 );

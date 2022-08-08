@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { useDispatch } from "react-redux";
-import { setModalData, toggleIsOpen } from "../store/modalDataSlice";
+import { setModalData } from "../store/modalDataSlice";
 import PopupContext from "../popupcontext/PopupContext";
 import { setValue1, setValue2, setFetchValues } from "../store/valuesSlice";
 
@@ -9,10 +9,11 @@ const Row = ({ value1, value2, idx }) => {
 
 	const { setIsModalOpen } = useContext(PopupContext);
 
-	const setModalDataHandler = (e) => {
+	const setModalDataHandler = (
+		e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+	) => {
 		e.stopPropagation();
 		dispatch(setModalData({ index: idx, value1, value2 }));
-		// dispatch(toggleIsOpen());
 		setIsModalOpen(true);
 	};
 

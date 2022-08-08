@@ -1,9 +1,14 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { ActionCreatorWithPayload, createSlice } from "@reduxjs/toolkit";
 
-const initialState = {
+interface IValuesState {
+	values: { value1: string; value2: string };
+	fetchValues: boolean;
+}
+
+const initialState: IValuesState = {
 	values: {
-		value1: null,
-		value2: null,
+		value1: "",
+		value2: "",
 	},
 	fetchValues: false,
 };

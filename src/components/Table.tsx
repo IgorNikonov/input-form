@@ -1,9 +1,10 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import { RootState } from "../store";
 import Row from "./Row";
 
 const Table = () => {
-	const data = useSelector((state) => state.table);
+	const data = useSelector((state: RootState) => state.table);
 	return (
 		<div>
 			{data.map((item, idx) => (

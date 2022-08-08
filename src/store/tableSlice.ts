@@ -1,6 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = [];
+interface ITableState {
+	idx: number;
+	value1: string;
+	value2: string;
+}
+
+const initialState: ITableState[] = [];
 
 const tableSlice = createSlice({
 	name: "table",

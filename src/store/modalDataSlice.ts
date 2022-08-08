@@ -1,8 +1,15 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = {
+interface IModalState {
+	data: {
+		index?: string;
+		value1?: string;
+		value2?: string;
+	};
+}
+
+const initialState: IModalState = {
 	data: {},
-	// isOpen: false,
 };
 
 const modalDataSlice = createSlice({
@@ -12,9 +19,6 @@ const modalDataSlice = createSlice({
 		setModalData(state, action) {
 			state.data = action.payload;
 		},
-		// toggleIsOpen(state) {
-		// 	state.isOpen = !state.isOpen;
-		// },
 	},
 });
 

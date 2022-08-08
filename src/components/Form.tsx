@@ -2,13 +2,21 @@ import React, { useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { setValue1, setValue2, setFetchValues } from "../store/valuesSlice";
 import { addToTableArray } from "../store/tableSlice";
+import type { RootState } from "../store";
+import type { AppDispatch } from "../store";
 
 const Form = () => {
 	const dispatch = useDispatch();
-	const { value1, value2 } = useSelector((state) => state.values.values);
-	const fetchValues = useSelector((state) => state.values.fetchValues);
-	const inputEl1 = useRef(null);
-	const inputEl2 = useRef(null);
+
+	const { value1, value2 } = useSelector(
+		(state: RootState) => state.values.values
+	);
+	const fetchValues = useSelector(
+		(state: RootState) => state.values.fetchValues
+	);
+
+	const inputEl1 = useRef<HTMLInputElement>(null);
+	const inputEl2 = useRef<HTMLInputElement>(null);
 
 	// event handlers
 	const setInitialValue1 = (value) => {
@@ -42,13 +50,13 @@ const Form = () => {
 						ref={inputEl1}
 						type='text'
 						onChange={(e) => setInitialValue1(e.target.value)}
-						className='border-2 border-yellow-700 outline-none'
+						className='border-2 border-yellow-700 outline-none focus:shadow-lg focus:shadow-slate-200'
 					/>
 					<input
 						ref={inputEl2}
 						type='text'
 						onChange={(e) => setInitialValue2(e.target.value)}
-						className='border-2 border-yellow-700 outline-none'
+						className='border-2 border-yellow-700 outline-none focus:shadow-lg focus:shadow-slate-200'
 					/>
 				</div>
 				<button

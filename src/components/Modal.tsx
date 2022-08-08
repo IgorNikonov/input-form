@@ -1,22 +1,21 @@
 import React, { useContext } from "react";
 import PopupContext from "../popupcontext/PopupContext";
-import { useSelector, useDispatch } from "react-redux";
-// import { toggleIsOpen } from "../store/modalDataSlice";
+import { useSelector } from "react-redux";
+import ReactDom from "react-dom";
+import { RootState } from "../store";
 
 const Modal = () => {
 	const { index, value1, value2 } = useSelector(
-		(state) => state.modalData.data
+		(state: RootState) => state.modalData.data
 	);
 
 	const { setIsModalOpen } = useContext(PopupContext);
-	// const dispatch = useDispatch();
 
 	const closeModalHandler = () => {
-		// dispatch(toggleIsOpen());
 		setIsModalOpen(false);
 	};
 
-	return (
+	return ReactDom.createPortal(
 		<div
 			className='fixed top-0 left-0 w-full h-full flex justify-center items-center bg-[rgba(0,0,0,0.7)]'
 			onClick={closeModalHandler}
@@ -35,7 +34,8 @@ const Modal = () => {
 					x
 				</span>
 			</div>
-		</div>
+		</div>,
+		document.getElementById("portal")
 	);
 };
 

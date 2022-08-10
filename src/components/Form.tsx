@@ -49,13 +49,17 @@ const Form = () => {
 					<input
 						ref={inputEl1}
 						type='text'
-						onChange={(e) => setInitialValue1(e.target.value)}
+						onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+							setInitialValue1(e.target.value)
+						}
 						className='border-2 border-yellow-700 outline-none focus:shadow-lg focus:shadow-slate-200'
 					/>
 					<input
 						ref={inputEl2}
 						type='text'
-						onChange={(e) => setInitialValue2(e.target.value)}
+						onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+							setInitialValue2(e.target.value)
+						}
 						className='border-2 border-yellow-700 outline-none focus:shadow-lg focus:shadow-slate-200'
 					/>
 				</div>

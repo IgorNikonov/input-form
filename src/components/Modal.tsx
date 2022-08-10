@@ -12,7 +12,7 @@ const Modal = () => {
 	const { setIsModalOpen } = useContext(PopupContext);
 
 	const closeModalHandler = () => {
-		setIsModalOpen(false);
+		setIsModalOpen && setIsModalOpen(false);
 	};
 
 	return ReactDom.createPortal(

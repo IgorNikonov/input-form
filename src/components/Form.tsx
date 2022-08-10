@@ -3,7 +3,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { setValue1, setValue2, setFetchValues } from "../store/valuesSlice";
 import { addToTableArray } from "../store/tableSlice";
 import type { RootState } from "../store";
-import type { AppDispatch } from "../store";
 
 const Form = () => {
 	const dispatch = useDispatch();
@@ -19,11 +18,11 @@ const Form = () => {
 	const inputEl2 = createRef<HTMLInputElement>();
 
 	// event handlers
-	const setInitialValue1 = (value) => {
+	const setInitialValue1 = (value: string) => {
 		dispatch(setValue1(value));
 	};
 
-	const setInitialValue2 = (value) => {
+	const setInitialValue2 = (value: string) => {
 		dispatch(setValue2(value));
 	};
 

@@ -7,6 +7,7 @@ const Table = () => {
 	const data = useSelector((state: RootState) => state.table);
 	return (
 		<div>
+			<Modal />
 			{data.map((item, idx) => (
 				<Row value1={item.value1} value2={item.value2} idx={idx + 1} />
 			))}

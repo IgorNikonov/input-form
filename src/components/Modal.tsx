@@ -1,19 +1,8 @@
-import React, { useContext } from "react";
-import PopupContext from "../popupcontext/PopupContext";
-import { useSelector } from "react-redux";
+import React from "react";
 import ReactDom from "react-dom";
-import { RootState } from "../store";
 
-const Modal = () => {
-	const { index, value1, value2 } = useSelector(
-		(state: RootState) => state.modalData.data
-	);
-
-	const { setIsModalOpen } = useContext(PopupContext);
-
-	const closeModalHandler = () => {
-		setIsModalOpen && setIsModalOpen(false);
-	};
+const Modal = ({ index, value1, value2 }) => {
+	const closeModalHandler = () => {};
 
 	return ReactDom.createPortal(
 		<div

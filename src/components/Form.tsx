@@ -29,15 +29,15 @@ const Form = () => {
 	const addToTable = () => {
 		const tablePayload = { value1, value2 };
 		dispatch(addToTableArray(tablePayload));
-		inputEl1.current.value = "";
-		inputEl2.current.value = "";
+		inputEl1.current && {inputEl1.current.value = ""};
+		inputEl2.current && {inputEl2.current.value = ""};
 		dispatch(setFetchValues(false));
 	};
 
 	useEffect(() => {
 		if (fetchValues) {
-			inputEl1.current.value = value1;
-			inputEl2.current.value = value2;
+			inputEl1.current && {inputEl1.current.value = value1};
+			inputEl2.current && {inputEl2.current.value = value2};
 		}
 	}, [value1, value2, fetchValues]);
 
@@ -46,6 +46,7 @@ const Form = () => {
 			<div className='mt-5'>
 				<div className='flex gap-2 justify-center'>
 					<input
+						value=''
 						ref={inputEl1}
 						type='text'
 						onChange={(e: React.ChangeEvent<HTMLInputElement>) =>

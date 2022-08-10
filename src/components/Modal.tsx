@@ -22,7 +22,7 @@ const Modal = ({ index, value1, value2, close }) => {
 				</span>
 			</div>
 		</div>,
-		document.getElementById("portal")
+		document.getElementById("portal") as HTMLElement
 	);
 };
 

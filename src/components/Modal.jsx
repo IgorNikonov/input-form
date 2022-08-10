@@ -3,17 +3,12 @@ import PopupContext from "../popupcontext/PopupContext";
 import { useSelector, useDispatch } from "react-redux";
 // import { toggleIsOpen } from "../store/modalDataSlice";
 
-const Modal = () => {
-	const { index, value1, value2 } = useSelector(
-		(state) => state.modalData.data
-	);
+const Modal = ({index, value1, value2}) => {
 
-	const { setIsModalOpen } = useContext(PopupContext);
-	// const dispatch = useDispatch();
+	const { setModal } = useContext(PopupContext);
 
 	const closeModalHandler = () => {
-		// dispatch(toggleIsOpen());
-		setIsModalOpen(false);
+		setModal(null);
 	};
 
 	return (

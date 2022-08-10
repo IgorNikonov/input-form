@@ -1,19 +1,18 @@
 import React, { useContext } from "react";
 import { useDispatch } from "react-redux";
-import { setModalData, toggleIsOpen } from "../store/modalDataSlice";
 import PopupContext from "../popupcontext/PopupContext";
+import Modal from './Modal';
 import { setValue1, setValue2, setFetchValues } from "../store/valuesSlice";
 
 const Row = ({ value1, value2, idx }) => {
 	const dispatch = useDispatch();
+	const {setModal} = useContext(PopupContext);
 
 	const { setIsModalOpen } = useContext(PopupContext);
 
 	const setModalDataHandler = (e) => {
 		e.stopPropagation();
-		dispatch(setModalData({ index: idx, value1, value2 }));
-		// dispatch(toggleIsOpen());
-		setIsModalOpen(true);
+		setModal(<Modal index={idx} value1={value1} value2={value2} />)
 	};
 
 	const setFormValuesHandler = () => {

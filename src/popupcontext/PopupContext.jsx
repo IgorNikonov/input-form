@@ -1,14 +1,13 @@
 import { createContext, useState } from "react";
-import Modal from "../components/Modal";
 
 const PopupContext = createContext();
 
 export const PopupProvider = ({ children }) => {
-	const [isModalOpen, setIsModalOpen] = useState(false);
+	const [modal, setModal] = useState(null);
 
 	return (
-		<PopupContext.Provider value={{ isModalOpen, setIsModalOpen }}>
-			{isModalOpen && <Modal />}
+		<PopupContext.Provider value={{ modal, setModal }}>
+			{modal}
 			{children}
 		</PopupContext.Provider>
 	);

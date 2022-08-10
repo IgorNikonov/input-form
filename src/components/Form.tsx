@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, createRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { setValue1, setValue2, setFetchValues } from "../store/valuesSlice";
 import { addToTableArray } from "../store/tableSlice";
@@ -15,8 +15,8 @@ const Form = () => {
 		(state: RootState) => state.values.fetchValues
 	);
 
-	const inputEl1 = useRef<HTMLInputElement>(null);
-	const inputEl2 = useRef<HTMLInputElement>(null);
+	const inputEl1 = createRef<HTMLInputElement>();
+	const inputEl2 = createRef<HTMLInputElement>();
 
 	// event handlers
 	const setInitialValue1 = (value) => {

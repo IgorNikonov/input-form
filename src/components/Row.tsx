@@ -1,14 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { setValue1, setValue2, setFetchValues } from "../store/valuesSlice";
+import Modal from "./Modal";
 
 const Row = ({ value1, value2, idx }) => {
 	const dispatch = useDispatch();
+	const [isModalOpen, setIsModalOpen] = useState(false);
 
-	const setModalDataHandler = (
+	const openModalHandler = (
 		e: React.MouseEvent<HTMLButtonElement, MouseEvent>
 	) => {
 		e.stopPropagation();
+		setIsModalOpen(true);
+	};
+
+	const closeModalHandler = () => {
+		setIsModalOpen(false);
 	};
 
 	const setFormValuesHandler = () => {
@@ -18,31 +25,41 @@ const Row = ({ value1, value2, idx }) => {
 	};
 
 	return (
-		<div
-			className='flex justify-center mt-20 cursor-pointer'
-			onClick={setFormValuesHandler}
-		>
-			<div className='p-5 border border-black border-r-0 flex justify-center items-center flex-col'>
-				<p>#:</p>
-				{idx}
+		<>
+			{isModalOpen && (
+				<Modal
+					index={idx}
+					value1={value1}
+					value2={value2}
+					close={closeModalHandler}
+				/>
+			)}
+			<div
+				className='flex justify-center mt-20 cursor-pointer'
+				onClick={setFormValuesHandler}
+			>
+				<div className='p-5 border border-black border-r-0 flex justify-center items-center flex-col'>
+					<p>#:</p>
+					{idx}
+				</div>
+				<div className='p-5 border border-black border-r-0 flex justify-center items-center flex-col'>
+					<p>value 1:</p>
+					{value1}
+				</div>
+				<div className='p-5 border border-black border-r-0 flex justify-center items-center flex-col'>
+					<p>value 2:</p>
+					{value2}
+				</div>
+				<div className='p-5 border border-black'>
+					<button
+						onClick={(e) => openModalHandler(e)}
+						className='px-3 py-2 border border-orange-500 rounded-md'
+					>
+						open
+					</button>
+				</div>
 			</div>
-			<div className='p-5 border border-black border-r-0 flex justify-center items-center flex-col'>
-				<p>value 1:</p>
-				{value1}
-			</div>
-			<div className='p-5 border border-black border-r-0 flex justify-center items-center flex-col'>
-				<p>value 2:</p>
-				{value2}
-			</div>
-			<div className='p-5 border border-black'>
-				<button
-					onClick={(e) => setModalDataHandler(e)}
-					className='px-3 py-2 border border-orange-500 rounded-md'
-				>
-					open
-				</button>
-			</div>
-		</div>
+		</>
 	);
 };
 

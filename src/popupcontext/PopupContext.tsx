@@ -1,12 +1,17 @@
-import React, { createContext, SetStateAction, useState } from "react";
+import React, {
+	createContext,
+	Dispatch,
+	SetStateAction,
+	useState,
+} from "react";
 import Modal from "../components/Modal";
 
 interface IPopupContextValues {
-	isModalOpen: boolean;
-	setIsModalOpen: SetStateAction<boolean>;
+	isModalOpen?: boolean;
+	setIsModalOpen?: Dispatch<SetStateAction<boolean>>;
 }
 
-const PopupContext = createContext<IPopupContextValues | {}>({});
+const PopupContext = createContext<IPopupContextValues>({});
 
 export const PopupProvider = ({ children }) => {
 	const [isModalOpen, setIsModalOpen] = useState(false);

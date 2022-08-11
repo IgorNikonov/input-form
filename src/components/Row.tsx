@@ -11,17 +11,19 @@ interface IRowProps {
 
 const Row: React.FC<IRowProps> = ({ value1, value2, idx }) => {
 	const dispatch = useDispatch();
-	const [isModalOpen, setIsModalOpen] = useState(false);
+	// const [isModalOpen, setIsModalOpen] = useState(false);
+	const [portalModal, setPortalModal] = useState(false);
+	const [contextModal, setContextModal] = useState(false);
 
 	const openModalHandler = (
 		e: React.MouseEvent<HTMLButtonElement, MouseEvent>
 	) => {
 		e.stopPropagation();
-		setIsModalOpen(true);
+		// setIsModalOpen(true);
 	};
 
 	const closeModalHandler = () => {
-		setIsModalOpen(false);
+		// setIsModalOpen(false);
 	};
 
 	const setFormValuesHandler = () => {
@@ -61,7 +63,13 @@ const Row: React.FC<IRowProps> = ({ value1, value2, idx }) => {
 						onClick={(e) => openModalHandler(e)}
 						className='px-3 py-2 border border-orange-500 rounded-md'
 					>
-						open
+						open with portal
+					</button>
+					<button
+						onClick={(e) => openModalHandler(e)}
+						className='px-3 py-2 border border-orange-500 rounded-md'
+					>
+						open with context
 					</button>
 				</div>
 			</div>

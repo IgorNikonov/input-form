@@ -1,5 +1,4 @@
 import React from "react";
-import ReactDom from "react-dom";
 
 interface IModalProps {
 	index: number;
@@ -9,7 +8,7 @@ interface IModalProps {
 }
 
 const Modal: React.FC<IModalProps> = ({ index, value1, value2, close }) => {
-	return ReactDom.createPortal(
+	return (
 		<div
 			className='fixed top-0 left-0 w-full h-full flex justify-center items-center bg-[rgba(0,0,0,0.7)]'
 			onClick={close}
@@ -28,8 +27,7 @@ const Modal: React.FC<IModalProps> = ({ index, value1, value2, close }) => {
 					x
 				</span>
 			</div>
-		</div>,
-		document.getElementById("portal") as HTMLElement
+		</div>
 	);
 };
 

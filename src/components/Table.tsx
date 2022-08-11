@@ -13,13 +13,15 @@ const Table: React.FC = () => {
 
 	return (
 		<div>
-			<span>Popup mode: {portalMode ? "portal" : "context"}</span>
-			<button
-				onClick={toggleMode}
-				className='px-5 py-2 mt-3 border border-orange-500 rounded-md'
-			>
-				change popup mode to {portalMode ? "context" : "portal"}
-			</button>
+			<div className='flex gap-3 items-center justify-end'>
+				<span>Popup mode: {portalMode ? "portal" : "context"}</span>
+				<button
+					onClick={toggleMode}
+					className='px-5 py-2 mt-3 border border-orange-500 rounded-md mr-20'
+				>
+					change popup mode to {portalMode ? "context" : "portal"}
+				</button>
+			</div>
 			{data.map((item, idx) => (
 				<Row
 					value1={item.value1}

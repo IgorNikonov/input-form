@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../store";
 import Row from "./Row";
 
-const Table = () => {
+const Table: React.FC = () => {
 	const data = useSelector((state: RootState) => state.table);
 	return (
 		<div>

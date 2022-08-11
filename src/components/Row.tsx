@@ -3,7 +3,13 @@ import { useDispatch } from "react-redux";
 import { setValue1, setValue2, setFetchValues } from "../store/valuesSlice";
 import Modal from "./Modal";
 
-const Row = ({ value1, value2, idx }) => {
+interface IRowProps {
+	value1: string;
+	value2: string;
+	idx: number;
+}
+
+const Row: React.FC<IRowProps> = ({ value1, value2, idx }) => {
 	const dispatch = useDispatch();
 	const [isModalOpen, setIsModalOpen] = useState(false);
 

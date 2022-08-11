@@ -1,7 +1,14 @@
 import React from "react";
 import ReactDom from "react-dom";
 
-const Modal = ({ index, value1, value2, close }) => {
+interface IModalProps {
+	index: number;
+	value1: string;
+	value2: string;
+	close: () => void;
+}
+
+const Modal: React.FC<IModalProps> = ({ index, value1, value2, close }) => {
 	return ReactDom.createPortal(
 		<div
 			className='fixed top-0 left-0 w-full h-full flex justify-center items-center bg-[rgba(0,0,0,0.7)]'

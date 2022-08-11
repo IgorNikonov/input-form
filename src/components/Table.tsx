@@ -8,7 +8,12 @@ const Table: React.FC = () => {
 	return (
 		<div>
 			{data.map((item, idx) => (
-				<Row value1={item.value1} value2={item.value2} idx={idx + 1} />
+				<Row
+					value1={item.value1}
+					value2={item.value2}
+					idx={idx + 1}
+					key={idx}
+				/>
 			))}
 		</div>
 	);

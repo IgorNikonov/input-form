@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useDispatch } from "react-redux";
 import { setValue1, setValue2, setFetchValues } from "../store/valuesSlice";
 import Modal from "./Modal";
+import ModalRenderer from "./ModalRenderer";
+import ModalContext from "../ModalContext/ModalContext";
 
 interface IRowProps {
 	value1: string;
@@ -11,19 +13,39 @@ interface IRowProps {
 
 const Row: React.FC<IRowProps> = ({ value1, value2, idx }) => {
 	const dispatch = useDispatch();
-	// const [isModalOpen, setIsModalOpen] = useState(false);
 	const [portalModal, setPortalModal] = useState(false);
-	const [contextModal, setContextModal] = useState(false);
 
-	const openModalHandler = (
+	const { setModal } = useContext(ModalContext);
+
+	const closeContextModal = () => {
+		setModal && setModal(null);
+	};
+
+	const openContextModal = (
 		e: React.MouseEvent<HTMLButtonElement, MouseEvent>
 	) => {
 		e.stopPropagation();
-		// setIsModalOpen(true);
+		console.log(setModal);
+		setModal &&
+			setModal(
+				<Modal
+					index={idx}
+					value1={value1}
+					value2={value2}
+					close={closeContextModal}
+				/>
+			);
 	};
 
-	const closeModalHandler = () => {
-		// setIsModalOpen(false);
+	const openPortalModal = (
+		e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+	) => {
+		e.stopPropagation();
+		setPortalModal(true);
+	};
+
+	const closePortalModal = () => {
+		setPortalModal(false);
 	};
 
 	const setFormValuesHandler = () => {
@@ -34,12 +56,12 @@ const Row: React.FC<IRowProps> = ({ value1, value2, idx }) => {
 
 	return (
 		<>
-			{isModalOpen && (
-				<Modal
+			{portalModal && (
+				<ModalRenderer
 					index={idx}
 					value1={value1}
 					value2={value2}
-					close={closeModalHandler}
+					close={closePortalModal}
 				/>
 			)}
 			<div
@@ -60,13 +82,13 @@ const Row: React.FC<IRowProps> = ({ value1, value2, idx }) => {
 				</div>
 				<div className='p-5 border border-black'>
 					<button
-						onClick={(e) => openModalHandler(e)}
+						onClick={(e) => openPortalModal(e)}
 						className='px-3 py-2 border border-orange-500 rounded-md'
 					>
 						open with portal
 					</button>
 					<button
-						onClick={(e) => openModalHandler(e)}
+						onClick={(e) => openContextModal(e)}
 						className='px-3 py-2 border border-orange-500 rounded-md'
 					>
 						open with context

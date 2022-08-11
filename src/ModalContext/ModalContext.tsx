@@ -1,12 +1,20 @@
-import { createContext, useState } from "react";
+import { createContext, Dispatch, SetStateAction, useState } from "react";
 
-const ModalContext = createContext();
+export interface PopUpContextI {
+	setModal?: Dispatch<SetStateAction<JSX.Element | null>>;
+}
 
-export const ModalProvider = ({ children }) => {
-	const [modal, setModal] = useState(null);
+const ModalContext = createContext<PopUpContextI>({});
+
+interface ContextInterface {
+	children: JSX.Element;
+}
+
+export const ModalProvider: React.FC<ContextInterface> = ({ children }) => {
+	const [modal, setModal] = useState<JSX.Element | null>(null);
 
 	return (
-		<ModalContext.Provider value={setModal}>
+		<ModalContext.Provider value={{ setModal }}>
 			{modal}
 			{children}
 		</ModalContext.Provider>

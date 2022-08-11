@@ -15,6 +15,8 @@ const ModalRenderer: React.FC<IModalPortal> = ({
 	value2,
 	close,
 }) => {
+	console.log("portal");
+
 	return ReactDom.createPortal(
 		<Modal index={index} value1={value1} value2={value2} close={close} />,
 		document.getElementById("portal") as HTMLElement

@@ -13,6 +13,8 @@ interface ContextInterface {
 export const ModalProvider: React.FC<ContextInterface> = ({ children }) => {
 	const [modal, setModal] = useState<JSX.Element | null>(null);
 
+	console.log("context");
+
 	return (
 		<ModalContext.Provider value={{ setModal }}>
 			{modal}

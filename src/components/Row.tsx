@@ -9,43 +9,37 @@ interface IRowProps {
 	value1: string;
 	value2: string;
 	idx: number;
+	portalMode: boolean;
 }
 
-const Row: React.FC<IRowProps> = ({ value1, value2, idx }) => {
+const Row: React.FC<IRowProps> = ({ value1, value2, idx, portalMode }) => {
 	const dispatch = useDispatch();
-	const [portalModal, setPortalModal] = useState(false);
 
 	const { setModal } = useContext(ModalContext);
+
+	const [isOpenModal, setIsOpenModal] = useState(false);
+
+	const openModal = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+		e.stopPropagation();
+		portalMode
+			? setIsOpenModal(true)
+			: setModal &&
+			  setModal(
+					<Modal
+						index={idx}
+						value1={value1}
+						value2={value2}
+						close={closeContextModal}
+					/>
+			  );
+	};
 
 	const closeContextModal = () => {
 		setModal && setModal(null);
 	};
 
-	const openContextModal = (
-		e: React.MouseEvent<HTMLButtonElement, MouseEvent>
-	) => {
-		e.stopPropagation();
-		console.log(setModal);
-		setModal &&
-			setModal(
-				<Modal
-					index={idx}
-					value1={value1}
-					value2={value2}
-					close={closeContextModal}
-				/>
-			);
-	};
-
-	const openPortalModal = (
-		e: React.MouseEvent<HTMLButtonElement, MouseEvent>
-	) => {
-		e.stopPropagation();
-		setPortalModal(true);
-	};
-
 	const closePortalModal = () => {
-		setPortalModal(false);
+		setIsOpenModal(false);
 	};
 
 	const setFormValuesHandler = () => {
@@ -56,7 +50,7 @@ const Row: React.FC<IRowProps> = ({ value1, value2, idx }) => {
 
 	return (
 		<>
-			{portalModal && (
+			{isOpenModal && (
 				<ModalRenderer
 					index={idx}
 					value1={value1}
@@ -82,16 +76,10 @@ const Row: React.FC<IRowProps> = ({ value1, value2, idx }) => {
 				</div>
 				<div className='p-5 border border-black'>
 					<button
-						onClick={(e) => openPortalModal(e)}
+						onClick={(e) => openModal(e)}
 						className='px-3 py-2 border border-orange-500 rounded-md'
 					>
-						open with portal
-					</button>
-					<button
-						onClick={(e) => openContextModal(e)}
-						className='px-3 py-2 border border-orange-500 rounded-md'
-					>
-						open with context
+						open
 					</button>
 				</div>
 			</div>
